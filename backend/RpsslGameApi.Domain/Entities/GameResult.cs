@@ -1,6 +1,6 @@
 ﻿namespace RpsslGameApi.Domain.Entities;
 
-public enum Results
+public enum GameResult
 {
     Win, 
     Lose, 
