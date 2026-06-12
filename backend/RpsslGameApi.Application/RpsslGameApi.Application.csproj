@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RpsslGameApi.Contracts\RpsslGameApi.Contracts.csproj" />
+      <ProjectReference Include="..\RpsslGameApi.Infrastructure\RpsslGameApi.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Asp.Versioning;
 using Microsoft.OpenApi.Extensions;
 using RpsslGameApi.Contracts;
-using Results = RpsslGameApi.Domain.Entities.Results;
+using RpsslGameApi.Domain.Entities;
+using RpsslGameApi.Infrastructure.Services.Interfaces;
 
 namespace RpsslGameApi.Application.Controllers.v1
 {
@@ -10,33 +12,40 @@ namespace RpsslGameApi.Application.Controllers.v1
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/game")]
     public class RpsslGameController : ControllerBase
-    {
-        public  RpsslGameController()
+    {   
+        private readonly IGetChoiceService _choiceService;
+        private readonly IGetChoicesService _choicesService;
+        private readonly IPlayService _playService;
+
+        public RpsslGameController(
+            IGetChoiceService choiceService,
+            IGetChoicesService choicesService,
+            IPlayService playService
+        )
         {
+            _choiceService = choiceService;
+            _choicesService = choicesService;
+            _playService = playService;
         }
      
         [HttpGet("choices")]
         public async Task<ActionResult<IEnumerable<ChoiceResponse>>> GetChoices()
         {
-            return Ok(new List<ChoiceResponse> { ChoiceResponse.FromId(1), ChoiceResponse.FromId(2)});
+            return Ok(_choicesService.FetchChoices());
         }
      
         [HttpGet("choice")]
         public async Task<ActionResult<ChoiceResponse>> GetChoice()
         {
-            return Ok(ChoiceResponse.FromId(2));
+            return Ok(await _choiceService.FetchChoice());
         }
      
         [HttpPost("play")]
-        public async Task<ActionResult<PlayResponse>> Play(string input)
+        public async Task<ActionResult<PlayResponse>> Play(int player)
         {
-            return Ok(new PlayResponse()
-            {
-                Computer = 1,
-                Player = 1,
-                Result = Results.Tie.ToString()
-                
-            });
+            if(1 > player ||  player > 5)
+                return BadRequest("The choice must be between 1 and 5");
+            return Ok(await _playService.FetchPlay(player));
         }
     }
 }
