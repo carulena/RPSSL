@@ -1,5 +1,4 @@
-﻿using RpsslGameApi.Domain.Entities;
-namespace RpsslGameApi.Contracts;
+﻿namespace RpsslGameApi.Contracts;
 
 public class PlayResponse
 {

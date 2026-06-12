@@ -1,6 +1,4 @@
-﻿
-using RpsslGameApi.Contracts;
-using RpsslGameApi.Infrastructure.Mappers;
+﻿using RpsslGameApi.Infrastructure.Mappers;
 
 namespace RpsslGameApi.Infrastructure.Tests.Mappers;
 

@@ -23,7 +23,7 @@ public class GetRandomNumberRepository:IGetRandomNumberRepository
     {
         try
         {
-            var response = await _httpClient.GetAsync(_randomConfig.url);
+            var response = await _httpClient.GetAsync(_randomConfig.Url);
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadFromJsonAsync<RandomNumberResponse>();

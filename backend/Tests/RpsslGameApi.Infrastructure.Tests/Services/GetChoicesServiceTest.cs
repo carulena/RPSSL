@@ -46,6 +46,6 @@ public class GetChoicesServiceTests
     {
         _choicesMapperMock.Setup(m => m.GetChoices()).Throws(new Exception("Mapper error"));
 
-        Assert.Throws<Exception>(() => _service.FetchChoices().ToList());
+        Assert.Throws<Exception>(() => _service.FetchChoices());
     }
 }

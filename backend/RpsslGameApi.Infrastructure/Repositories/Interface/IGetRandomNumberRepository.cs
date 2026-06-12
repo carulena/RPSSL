@@ -1,5 +1,4 @@
-﻿using RpsslGameApi.Contracts;
-namespace RpsslGameApi.Infrastructure.Repositories.Interface;
+﻿namespace RpsslGameApi.Infrastructure.Repositories.Interface;
 
 public interface IGetRandomNumberRepository
 {

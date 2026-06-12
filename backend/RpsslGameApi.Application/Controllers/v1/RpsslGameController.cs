@@ -1,9 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Asp.Versioning;
-using Microsoft.OpenApi.Extensions;
 using RpsslGameApi.Contracts;
-using RpsslGameApi.Domain.Entities;
 using RpsslGameApi.Infrastructure.Services.Interfaces;
 
 namespace RpsslGameApi.Application.Controllers.v1

@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using System.Text;
+using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Moq;
 using RpsslGameApi.Contracts.Options;
@@ -12,16 +14,21 @@ public class GetRandomNumberRepositoryTests
     private GetRandomNumberRepository _repository;
     private Mock<IOptions<RandomConfig>> _randomConfigMock;
 
+    public GetRandomNumberRepositoryTests(GetRandomNumberRepository repository)
+    {
+        _repository = repository;
+    }
+
     [SetUp]
     public void SetUp()
     {
         _randomConfigMock = new Mock<IOptions<RandomConfig>>();
-        _randomConfigMock.Setup(x => x.Value).Returns(new RandomConfig { url = "https://fake-url.com/random" });
+        _randomConfigMock.Setup(x => x.Value).Returns(new RandomConfig { Url = "https://fake-Url.com/random" });
     }
 
     private GetRandomNumberRepository CreateRepository(HttpStatusCode statusCode, object? content = null)
     {
-        var json = content is null ? "{\"random_number\": 50}" : System.Text.Json.JsonSerializer.Serialize(content);
+        var json = content is null ? "{\"random_number\": 50}" : JsonSerializer.Serialize(content);
         var handler = new FakeHttpMessageHandler(statusCode, json);
         var httpClient = new HttpClient(handler);
         return new GetRandomNumberRepository(_randomConfigMock.Object, httpClient);
@@ -70,7 +77,9 @@ public class GetRandomNumberRepositoryTests
         nullConfig.Setup(x => x.Value).Returns((RandomConfig)null!);
 
         Assert.Throws<ArgumentException>(() =>
-            new GetRandomNumberRepository(nullConfig.Object, new HttpClient()));
+        {
+            var _ = new GetRandomNumberRepository(nullConfig.Object, new HttpClient());
+        }); 
     }
 }
 
@@ -80,7 +89,7 @@ public class FakeHttpMessageHandler(HttpStatusCode statusCode, string content) :
     {
         return Task.FromResult(new HttpResponseMessage(statusCode)
         {
-            Content = new StringContent(content, System.Text.Encoding.UTF8, "application/json")
+            Content = new StringContent(content, Encoding.UTF8, "application/json")
         });
     }
 }

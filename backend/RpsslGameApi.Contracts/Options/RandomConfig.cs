@@ -2,5 +2,5 @@
 
 public class RandomConfig
 {
-    public string url { get; set; }
+    public required string Url { get; set; }
 }

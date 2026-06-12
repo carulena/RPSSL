@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using RpsslGameApi.Infrastructure.Utils;
+﻿using RpsslGameApi.Infrastructure.Utils;
 
 namespace RpsslGameApi.Infrastructure.Tests.Utils;
 

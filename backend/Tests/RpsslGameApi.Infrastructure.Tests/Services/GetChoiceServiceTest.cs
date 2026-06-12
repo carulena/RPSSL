@@ -1,5 +1,4 @@
 ﻿using Moq;
-using NUnit.Framework;
 using RpsslGameApi.Contracts;
 using RpsslGameApi.Domain.Entities;
 using RpsslGameApi.Infrastructure.Mappers.Interfaces;

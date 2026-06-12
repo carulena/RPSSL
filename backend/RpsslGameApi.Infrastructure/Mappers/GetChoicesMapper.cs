@@ -5,8 +5,6 @@ namespace RpsslGameApi.Infrastructure.Mappers;
 
 public class GetChoicesMapper:IGetChoicesMapper
 {
-    public GetChoicesMapper(){}
-
     public IEnumerable<ChoiceResponse> GetChoices()
     {
         return Enum.GetValues<Choice>()

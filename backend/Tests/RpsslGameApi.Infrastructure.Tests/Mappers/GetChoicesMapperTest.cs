@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using RpsslGameApi.Contracts;
-using RpsslGameApi.Domain.Entities;
+﻿using RpsslGameApi.Domain.Entities;
 using RpsslGameApi.Infrastructure.Mappers;
 
 namespace RpsslGameApi.Infrastructure.Tests.Mappers;
