@@ -5,10 +5,9 @@ services:
       - "8080:8080"
     environment:
       - ASPNETCORE_URLS=http://+:8080
-#
-#  frontend:
-#    build: ./frontend
-#    ports:
-#      - "3000:3000"
-#    depends_on:
-#      - backend
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
