@@ -4,8 +4,10 @@ import Options from "../../components/Game/Options";
 import Scoreboard from "../../components/Game/Scoreboard";
 import Title from "../../components/Home/Title";
 import Combat from "../../components/Game/Combat";
+import Help from "../../components/Game/Help";
 import {gameService} from "../../services/gameService";
 import {optionsMap} from "../../constants/optionsMap";
+
 export default function Game({ items }) {
     const [player, setPlayer] = useState(null);
     const [results, setResults] = useState([]);
@@ -40,39 +42,36 @@ export default function Game({ items }) {
     }, [player]);
 
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 10
-            }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap:1 }}>
             <Scoreboard results={results} />
+
+            <Box sx={{ paddingLeft: 2 }}>
+                <Help url="https://www.samkass.com/theories/RPSSL.html">
+                    How to Play 🤔
+                </Help>
+            </Box>
+
             {player === null ? (
-            <Box
-                sx={{
+                <Box sx={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
-                    gap: 10
+                    gap: 10,
                 }}>
-                <Title sx={{fontSize: "3rem"}}>Choose your fighter ⚔️</Title>
-                <Box
-                    sx={{
+                    <Title sx={{ fontSize: "3rem" }}>Choose your fighter ⚔️</Title>
+                    <Box sx={{
                         flex: 1,
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                    }}
-                >
-                    <Options items={items} setPlayer={setPlayer} />
+                    }}>
+                        <Options items={items} setPlayer={setPlayer} />
+                    </Box>
                 </Box>
-            </Box>) :
-                (
-                    <Combat result={combatResult} setPlayer={setPlayer} player={player} setRefresh={setRefresh} />
-                )
-                }
+            ) : (
+                <Combat result={combatResult} setPlayer={setPlayer} player={player} setRefresh={setRefresh} />
+            )}
         </Box>
     );
 }

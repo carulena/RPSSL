@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import { Box } from "@mui/material";
 import { optionsMap } from "../../constants/optionsMap";
 import Fighter from "./Fighter";
-import {css, styles} from "../../constants/style"
+import {css, styles} from "../../layout/style"
 import StartButton from "../Home/StartButton";
 import {useSequence} from "../../hooks/useSequence";
 

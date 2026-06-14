@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import { Box } from "@mui/material";
-import {styles} from "../../constants/style"
+import {styles} from "../../layout/style"
 export default function Fighter({ emojiRef, label }) {
     return (
         <Box sx={styles.fighter}>
