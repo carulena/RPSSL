@@ -13,10 +13,11 @@ public static class  ConfigureDependenciesExtensions
     public static void ConfigureDependencies(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddHttpClient<IGetRandomNumberRepository, GetRandomNumberRepository>();
-        services.Configure<RandomConfig>(configuration.GetSection("RandomConfig"));
-
+        services.Configure<RandomConfig>(configuration.GetSection("RandomConfig")); 
+        services.AddMemoryCache();
+        
         #region Services
-
+        services.AddSingleton<IScoreboardService, ScoreboardService>();
         services.AddScoped<IPlayService, PlayService>();
         services.AddScoped<IGetChoiceService, GetChoiceService>();
         services.AddScoped<IGetChoicesService, GetChoicesService>();

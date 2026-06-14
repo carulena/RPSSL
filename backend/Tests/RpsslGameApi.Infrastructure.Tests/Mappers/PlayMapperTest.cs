@@ -20,7 +20,7 @@ public class PlayMapperTests
     {
         var randomNumber = 50;
 
-        var result = _mapper.GetPlay(randomNumber, player);
+        var result = _mapper.Play(randomNumber, player);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Player, Is.EqualTo(player));
@@ -36,7 +36,7 @@ public class PlayMapperTests
         var validResults = new[] { "Win", "Lose", "Tie" };
         var randomNumber = 50;
 
-        var result = _mapper.GetPlay(randomNumber, 1);
+        var result = _mapper.Play(randomNumber, 1);
 
         Assert.That(validResults, Contains.Item(result.Result));
     }
@@ -48,7 +48,7 @@ public class PlayMapperTests
     {
         var randomNumber = 50;
 
-        Assert.Throws<ArgumentOutOfRangeException>(() => _mapper.GetPlay(randomNumber, player));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _mapper.Play(randomNumber, player));
     }
 
     [TestCase(0)]
@@ -57,6 +57,6 @@ public class PlayMapperTests
     public void GetPlay_ThrowsArgumentOutOfRangeException_WhenRandomNumberIsInvalid(int number)
     {
 
-        Assert.Throws<ArgumentOutOfRangeException>(() => _mapper.GetPlay(number, 1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _mapper.Play(number, 1));
     }
 }

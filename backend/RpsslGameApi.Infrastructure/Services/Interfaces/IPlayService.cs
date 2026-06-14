@@ -4,5 +4,5 @@ namespace RpsslGameApi.Infrastructure.Services.Interfaces;
 
 public interface IPlayService
 {
-    public Task<PlayResponse> FetchPlay(int player);
+    public Task<PlayResponse> PlayGame(int player);
 }

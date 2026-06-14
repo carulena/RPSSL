@@ -3,6 +3,7 @@ using RpsslGameApi.Contracts;
 using RpsslGameApi.Infrastructure.Mappers.Interfaces;
 using RpsslGameApi.Infrastructure.Repositories.Interface;
 using RpsslGameApi.Infrastructure.Services;
+using RpsslGameApi.Infrastructure.Services.Interfaces;
 
 namespace RpsslGameApi.Infrastructure.Tests.Services;
 
@@ -11,6 +12,7 @@ public class PlayServiceTests
 {
     private Mock<IPlayMapper> _playMapperMock;
     private Mock<IGetRandomNumberRepository> _randomNumberRepositoryMock;
+    private Mock<IScoreboardService> _scoreboardServiceMock;
     private PlayService _service;
 
     [SetUp]
@@ -18,7 +20,8 @@ public class PlayServiceTests
     {
         _playMapperMock = new Mock<IPlayMapper>();
         _randomNumberRepositoryMock = new Mock<IGetRandomNumberRepository>();
-        _service = new PlayService(_playMapperMock.Object, _randomNumberRepositoryMock.Object);
+        _scoreboardServiceMock = new Mock<IScoreboardService>();
+        _service = new PlayService(_playMapperMock.Object, _randomNumberRepositoryMock.Object, _scoreboardServiceMock.Object);
     }
 
     [TestCase(1)]
@@ -28,9 +31,9 @@ public class PlayServiceTests
     {
         var expected = new PlayResponse { Result = "Win", Player = player, Computer = 1 };
         _randomNumberRepositoryMock.Setup(r => r.GetRandomNumberAsync()).ReturnsAsync(50);
-        _playMapperMock.Setup(m => m.GetPlay(50, player)).Returns(expected);
+        _playMapperMock.Setup(m => m.Play(50, player)).Returns(expected);
 
-        var result = await _service.FetchPlay(player);
+        var result = await _service.PlayGame(player);
 
         Assert.That(result, Is.EqualTo(expected));
     }
@@ -40,7 +43,7 @@ public class PlayServiceTests
     [TestCase(-1)]
     public void FetchPlay_ThrowsArgumentOutOfRangeException_WhenPlayerIsInvalid(int player)
     {
-        Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => _service.FetchPlay(player));
+        Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => _service.PlayGame(player));
     }
 
     [Test]
@@ -48,16 +51,16 @@ public class PlayServiceTests
     {
         _randomNumberRepositoryMock.Setup(r => r.GetRandomNumberAsync()).ThrowsAsync(new Exception("Repository error"));
 
-        Assert.ThrowsAsync<Exception>(() => _service.FetchPlay(1));
+        Assert.ThrowsAsync<Exception>(() => _service.PlayGame(1));
     }
 
     [Test]
     public void FetchPlay_ThrowsException_WhenMapperThrows()
     {
         _randomNumberRepositoryMock.Setup(r => r.GetRandomNumberAsync()).ReturnsAsync(50);
-        _playMapperMock.Setup(m => m.GetPlay(50, 1)).Throws(new ArgumentOutOfRangeException());
+        _playMapperMock.Setup(m => m.Play(50, 1)).Throws(new ArgumentOutOfRangeException());
 
-        Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => _service.FetchPlay(1));
+        Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => _service.PlayGame(1));
     }
 
     [Test]
@@ -65,6 +68,6 @@ public class PlayServiceTests
     {
         _randomNumberRepositoryMock.Setup(r => r.GetRandomNumberAsync()).ThrowsAsync(new TimeoutException("Request timed out."));
 
-        Assert.ThrowsAsync<TimeoutException>(() => _service.FetchPlay(1));
+        Assert.ThrowsAsync<TimeoutException>(() => _service.PlayGame(1));
     }
 }

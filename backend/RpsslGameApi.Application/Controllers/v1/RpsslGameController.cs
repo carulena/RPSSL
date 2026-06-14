@@ -13,16 +13,19 @@ namespace RpsslGameApi.Application.Controllers.v1
         private readonly IGetChoiceService _choiceService;
         private readonly IGetChoicesService _choicesService;
         private readonly IPlayService _playService;
+        private readonly IScoreboardService _scoreboardService;
 
         public RpsslGameController(
             IGetChoiceService choiceService,
             IGetChoicesService choicesService,
-            IPlayService playService
+            IPlayService playService,
+            IScoreboardService scoreboardService
         )
         {
             _choiceService = choiceService;
             _choicesService = choicesService;
             _playService = playService;
+            _scoreboardService = scoreboardService;
         }
      
         [HttpGet("choices")]
@@ -42,7 +45,20 @@ namespace RpsslGameApi.Application.Controllers.v1
         {
             if(1 > player ||  player > 5)
                 return BadRequest("The choice must be between 1 and 5");
-            return Ok(await _playService.FetchPlay(player));
+            return Ok(await _playService.PlayGame(player));
+        }
+        
+        [HttpGet("scoreboard")]
+        public async Task<ActionResult<IEnumerable<PlayResponse>>> Scoreboard()
+        {
+            
+            return Ok(_scoreboardService.GetResults());
+        }
+
+        [HttpDelete("scoreboard")]
+        public async Task<ActionResult<bool>> DeleteScoreboard()
+        {
+            return Ok(_scoreboardService.Clear());
         }
     }
 }

@@ -8,7 +8,7 @@ namespace RpsslGameApi.Infrastructure.Mappers;
 
 public class PlayMapper : IPlayMapper
 {
-    public PlayResponse GetPlay(int randomNumber, int player)
+    public PlayResponse Play(int randomNumber, int player)
     {
         if (player < 1 || player > 5)
             throw new ArgumentOutOfRangeException(nameof(player), "Player choice must be between 1 and 5.");
