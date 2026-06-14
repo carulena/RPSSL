@@ -2,9 +2,11 @@ import React from "react";
 import { Box } from "@mui/material";
 import Title from "../components/Home/Title";
 import StartButton from "../components/Home/StartButton";
-import ItensAnimation from "../components/Home/CircleCarousel";
+import CircleCarousel from "../components/Home/CircleCarousel";
+import { useNavigate } from "react-router-dom";
 
-export default function Home() {
+export default function Home({ items, setItems }) {
+    const navigate = useNavigate();
     return (
         <Box
             sx={{
@@ -23,8 +25,8 @@ export default function Home() {
                     gap: 7,
                 }}
             >
-                <Title>LET'S PLAY?</Title>
-                <StartButton>Start</StartButton>
+                <Title sx={{fontSize: "5rem"}}>LET'S PLAY?</Title>
+                <StartButton onClick={() => navigate("/game")}>Start</StartButton>
             </Box>
 
             <Box
@@ -32,7 +34,7 @@ export default function Home() {
                     p: 4,
                 }}
             >
-                <ItensAnimation/>
+                <CircleCarousel items={items} setItems={setItems} />
             </Box>
         </Box>
     );
