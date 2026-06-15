@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:8080";
 
 export const gameService = {
     async getChoices() {
@@ -22,9 +22,6 @@ export const gameService = {
     },
 
     async play(player) {
-        const body = {
-            "player": player
-        }
         const response = await fetch(`${BASE_URL}/play`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
