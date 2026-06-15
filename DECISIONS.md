@@ -24,6 +24,12 @@ Vitest was chosen for frontend testing because it integrates well with Vite and 
 
 Docker was added to make it easier to run the backend and frontend together in a consistent environment. This helps validate the integration between both parts of the application and reduces differences between local setups.
 
+## Scoreboard Storage
+
+The scoreboard results are stored in memory because this is a small and simple application. Adding a database such as SQLite would increase the setup and implementation complexity without bringing much value for this challenge.
+
+The scoreboard is meant to show recent game history during the current application session, so the results do not need to be persisted after the application is stopped or restarted.
+
 ## Trade-offs
 
 The project intentionally avoids unnecessary infrastructure or complex patterns. The focus was to deliver a working, readable, and testable implementation of the game while keeping the structure practical for the size of the challenge.
