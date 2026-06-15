@@ -25,20 +25,20 @@ public class PlayMapperTests
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Player, Is.EqualTo(player));
         Assert.That(result.Computer, Is.InRange(1, 5));
-        Assert.That(result.Result, Is.Not.Empty);
+        Assert.That(result.Results, Is.Not.Empty);
     }
 
-    [TestCase("Win")]
-    [TestCase("Lose")]
-    [TestCase("Tie")]
+    [TestCase("win")]
+    [TestCase("lose")]
+    [TestCase("tie")]
     public void GetPlay_ReturnsValidResult(string expected)
     {
-        var validResults = new[] { "Win", "Lose", "Tie" };
+        var validResults = new[] { "win", "lose", "tie" };
         var randomNumber = 50;
 
         var result = _mapper.Play(randomNumber, 1);
 
-        Assert.That(validResults, Contains.Item(result.Result));
+        Assert.That(validResults, Contains.Item(result.Results));
     }
 
     [TestCase(0)]

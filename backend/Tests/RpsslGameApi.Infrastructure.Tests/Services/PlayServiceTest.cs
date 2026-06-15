@@ -29,7 +29,7 @@ public class PlayServiceTests
     [TestCase(5)]
     public async Task FetchPlay_ReturnsPlayResponse_WhenInputIsValid(int player)
     {
-        var expected = new PlayResponse { Result = "Win", Player = player, Computer = 1 };
+        var expected = new PlayResponse { Results = "Win", Player = player, Computer = 1 };
         _randomNumberRepositoryMock.Setup(r => r.GetRandomNumberAsync()).ReturnsAsync(50);
         _playMapperMock.Setup(m => m.Play(50, player)).Returns(expected);
 

@@ -82,13 +82,13 @@ public class ControllerTest
         Assert.That(ok, Is.Not.Null);
         var value = ok!.Value as ChoiceResponse;
         Assert.That(value!.Id, Is.EqualTo(4));
-        Assert.That(value.Name, Is.EqualTo("Spock"));
+        Assert.That(value.Name, Is.EqualTo("spock"));
     }
 
     [Test]
     public async Task Play_ReturnsOk_WithWinResult()
     {
-        var response = new PlayResponse { Result = "win", Player = 1, Computer = 3 };
+        var response = new PlayResponse { Results = "win", Player = 1, Computer = 3 };
         _playServiceMock.Setup(s => s.PlayGame(1)).ReturnsAsync(response);
 
         var result = await _controller.Play(new PlayRequest()
@@ -99,13 +99,13 @@ public class ControllerTest
         var ok = result.Result as OkObjectResult;
         Assert.That(ok, Is.Not.Null);
         var value = ok!.Value as PlayResponse;
-        Assert.That(value!.Result, Is.EqualTo("win"));
+        Assert.That(value!.Results, Is.EqualTo("win"));
     }
 
     [Test]
     public async Task Play_ReturnsOk_WithLoseResult()
     {
-        var response = new PlayResponse { Result = "lose", Player = 1, Computer = 2 };
+        var response = new PlayResponse { Results = "lose", Player = 1, Computer = 2 };
         _playServiceMock.Setup(s => s.PlayGame(1)).ReturnsAsync(response);
 
         var result = await _controller.Play(new PlayRequest()
@@ -116,13 +116,13 @@ public class ControllerTest
         var ok = result.Result as OkObjectResult;
         Assert.That(ok, Is.Not.Null);
         var value = ok!.Value as PlayResponse;
-        Assert.That(value!.Result, Is.EqualTo("lose"));
+        Assert.That(value!.Results, Is.EqualTo("lose"));
     }
 
     [Test]
     public async Task Play_ReturnsOk_WithTieResult()
     {
-        var response = new PlayResponse { Result = "tie", Player = 1, Computer = 1 };
+        var response = new PlayResponse { Results = "tie", Player = 1, Computer = 1 };
         _playServiceMock.Setup(s => s.PlayGame(1)).ReturnsAsync(response);
 
         var result = await _controller.Play(new PlayRequest()
@@ -133,7 +133,7 @@ public class ControllerTest
         var ok = result.Result as OkObjectResult;
         Assert.That(ok, Is.Not.Null);
         var value = ok!.Value as PlayResponse;
-        Assert.That(value!.Result, Is.EqualTo("tie"));
+        Assert.That(value!.Results, Is.EqualTo("tie"));
         Assert.That(value.Player, Is.EqualTo(value.Computer));
     }
     

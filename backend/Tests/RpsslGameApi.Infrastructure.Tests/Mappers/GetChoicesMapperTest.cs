@@ -35,7 +35,7 @@ public class GetChoicesMapperTest
     public void GetChoices_ReturnsCorrectNames()
     {
         var result = _mapper.GetChoices().ToList();
-        var expectedNames = Enum.GetValues<Choice>().Select(c => c.ToString()).ToList();
+        var expectedNames = Enum.GetValues<Choice>().Select(c => c.ToString().ToLower()).ToList();
 
         Assert.That(result.Select(r => r.Name), Is.EquivalentTo(expectedNames));
     }

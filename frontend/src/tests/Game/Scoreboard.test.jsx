@@ -21,9 +21,9 @@ vi.mock("./ArrowButton", () => ({
 }));
 
 const mockResults = [
-    { emojiPlayer: "✂️", emojiComputer: "🪨", result: "Lose" },
-    { emojiPlayer: "🪨", emojiComputer: "📄", result: "Lose" },
-    { emojiPlayer: "📄", emojiComputer: "✂️", result: "Lose" },
+    { emojiPlayer: "✂️", emojiComputer: "🪨", results: "Lose" },
+    { emojiPlayer: "🪨", emojiComputer: "📄", results: "Lose" },
+    { emojiPlayer: "📄", emojiComputer: "✂️", results: "Lose" },
 ];
 
 describe("Scoreboard", () => {

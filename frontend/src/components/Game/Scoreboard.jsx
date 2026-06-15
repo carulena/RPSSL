@@ -9,7 +9,7 @@ import tie from "../../assets/images/tie.png";
 import StartButton from "../Home/StartButton";
 import {gameService} from "../../services/gameService";
 
-const resultMap = { Win: win, Lose: lose, Tie: tie };
+const resultMap = { win: win, lose: lose, tie: tie };
 
 export default function Scoreboard({ results, setResults }) {
     const scrollRef = useRef(null);

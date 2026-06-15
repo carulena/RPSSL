@@ -23,7 +23,7 @@ public class PlayMapper : IPlayMapper
         {
             Computer = computer,
             Player = player,
-            Result = result.ToString()
+            Results = result.ToString().ToLower()
         };
     }
 }

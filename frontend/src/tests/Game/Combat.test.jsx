@@ -87,7 +87,7 @@ describe("Combat", () => {
     it("starts animation sequence when result is provided", () => {
         render(
             <Combat
-                result={{ computer: 2, result: "Win" }}
+                result={{ computer: 2, results: "Win" }}
                 setPlayer={vi.fn()}
                 player={1}
                 setRefresh={vi.fn()}

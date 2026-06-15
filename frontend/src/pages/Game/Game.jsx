@@ -21,7 +21,7 @@ export default function Game({ items }) {
                 emojiPlayer: optionsMap[g.player].emoji,
                 computer: optionsMap[g.computer].name,
                 emojiComputer: optionsMap[g.computer].emoji,
-                result: g.result,
+                results: g.results,
             }));
             setResults(mapped);
         });

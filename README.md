@@ -13,13 +13,13 @@ The project consists of:
 ## Architecture
 
 ```text
-├── frontend/
-├── backend/
-│   ├── RpsslGameApi.Application/
-│   ├── RpsslGameApi.Contracts/
-│   ├── RpsslGameApi.Domain/
-│   └── RpsslGameApi.Infrastructure/
-└── docker-compose.yml
+- frontend/
+- backend/
+  - RpsslGameApi.Application/
+  - RpsslGameApi.Contracts/
+  - RpsslGameApi.Domain/
+  - RpsslGameApi.Infrastructure/
+- docker-compose.yml
 ```
 
 ---

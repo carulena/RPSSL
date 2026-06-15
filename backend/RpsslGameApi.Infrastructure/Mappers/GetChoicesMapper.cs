@@ -11,7 +11,7 @@ public class GetChoicesMapper:IGetChoicesMapper
             .Select(c => new ChoiceResponse
             {
                 Id = (int)c,
-                Name = c.ToString()
+                Name = c.ToString().ToLower()
             });
     }
 }

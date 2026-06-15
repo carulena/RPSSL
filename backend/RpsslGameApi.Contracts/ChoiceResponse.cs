@@ -7,7 +7,7 @@ public class ChoiceResponse
     public string Name { get; set; } = string.Empty;
 
     public static ChoiceResponse FromChoice(Choice choice) =>
-        new() { Id = (int)choice, Name = choice.ToString() };
+        new() { Id = (int)choice, Name = choice.ToString().ToLower() };
 
     public static IEnumerable<ChoiceResponse> All =>
         Enum.GetValues<Choice>().Select(FromChoice);
