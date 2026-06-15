@@ -24,7 +24,7 @@ export default function Combat({ result, setPlayer, player, setRefresh}) {
 
         const playerEmoji   = optionsMap[player].emoji;
         const computerEmoji = optionsMap[result.computer].emoji;
-        const outcome       = result.result.toLowerCase();
+        const outcome       = result.results.toLowerCase();
 
         const pe    = playerRef.current;
         const ce    = computerRef.current;

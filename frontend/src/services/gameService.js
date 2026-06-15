@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/v1/game";
+const BASE_URL = "http://localhost:5000";
 
 export const gameService = {
     async getChoices() {
@@ -22,12 +22,14 @@ export const gameService = {
     },
 
     async play(player) {
-        const response = await fetch(
-            `${BASE_URL}/play?player=${player}`,
-            {
-                method: "POST",
-            }
-        );
+        const body = {
+            "player": player
+        }
+        const response = await fetch(`${BASE_URL}/play`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ player }),
+        });
 
         if (!response.ok) {
             throw new Error("Failed to play");

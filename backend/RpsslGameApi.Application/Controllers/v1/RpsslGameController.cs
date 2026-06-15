@@ -7,7 +7,6 @@ namespace RpsslGameApi.Application.Controllers.v1
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/game")]
     public class RpsslGameController : ControllerBase
     {   
         private readonly IGetChoiceService _choiceService;
@@ -41,8 +40,9 @@ namespace RpsslGameApi.Application.Controllers.v1
         }
      
         [HttpPost("play")]
-        public async Task<ActionResult<PlayResponse>> Play(int player)
+        public async Task<ActionResult<PlayResponse>> Play([FromBody]PlayRequest request)
         {
+            var player = request.Player; 
             if(1 > player ||  player > 5)
                 return BadRequest("The choice must be between 1 and 5");
             return Ok(await _playService.PlayGame(player));

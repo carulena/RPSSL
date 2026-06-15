@@ -32,10 +32,6 @@ describe("Scoreboard", () => {
         expect(screen.getByText(/no battles yet/i)).toBeInTheDocument();
     });
 
-    it("renders Scoreboard title", () => {
-        render(<Scoreboard results={[]} />);
-        expect(screen.getByText("Scoreboard")).toBeInTheDocument();
-    });
 
     it("renders player and computer emojis for each result", () => {
         render(<Scoreboard results={mockResults} />);

@@ -1,4 +1,4 @@
-# RPSSL — Rock Paper Scissors Spock Lizard
+# RPSSL - Rock Paper Scissors Spock Lizard
 
 A full-stack implementation of the classic **Rock Paper Scissors Spock Lizard** game.
 
@@ -13,7 +13,6 @@ The project consists of:
 ## Architecture
 
 ```text
-.
 ├── frontend/
 ├── backend/
 │   ├── RpsslGameApi.Application/
@@ -29,7 +28,7 @@ The project consists of:
 
 ### Frontend
 
-* React 18
+* React 19
 * Vite
 * Material UI (MUI)
 * Vitest
@@ -192,3 +191,12 @@ Rock Paper Scissors Spock Lizard extends the traditional game by adding two addi
 Reference:
 
 http://www.samkass.com/theories/RPSSL.html
+## AI Usage
+
+During development, I used AI tools to help with repetitive parts of the code, validate wording in documentation, and review the implementation for possible bugs or edge cases.
+    
+The generated suggestions were not used blindly: I reviewed and adjusted them to fit the project structure, requirements, and expected behavior.
+
+Tools used
+- Claude Code
+- Codex (OpenAI)

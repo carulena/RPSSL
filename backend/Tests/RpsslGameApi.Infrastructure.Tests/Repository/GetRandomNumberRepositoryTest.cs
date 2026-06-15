@@ -11,13 +11,8 @@ namespace RpsslGameApi.Infrastructure.Tests.Repository;
 [TestFixture]
 public class GetRandomNumberRepositoryTests
 {
-    private GetRandomNumberRepository _repository;
-    private Mock<IOptions<RandomConfig>> _randomConfigMock;
-
-    public GetRandomNumberRepositoryTests(GetRandomNumberRepository repository)
-    {
-        _repository = repository;
-    }
+    private GetRandomNumberRepository _repository = null!;
+    private Mock<IOptions<RandomConfig>> _randomConfigMock = null!;
 
     [SetUp]
     public void SetUp()

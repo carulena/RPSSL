@@ -80,7 +80,7 @@ export default function Scoreboard({ results, setResults }) {
                                 <Typography sx={{ fontSize: "2rem", lineHeight: 1 }}>🆚</Typography>
                                 <Typography sx={{ fontSize: "4rem", lineHeight: 1 }}>{item.emojiComputer}</Typography>
                             </Box>
-                            <img src={resultMap[item.result]} alt={item.result}
+                            <img src={resultMap[item.results]} alt={item.results}
                                  style={{ width: 90, height: 32, objectFit: "contain" }} />
                         </Box>
                     ))}

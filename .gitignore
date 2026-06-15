@@ -1,0 +1,7 @@
+﻿/backend/*/*/bin/*
+/backend/*/bin/*
+/backend/*/*/obj/*
+/backend/*/obj/*
+/frontend/package-lock.json
+/.idea/RPSSL.iml
+/backend/.idea/.idea.RPSSLAPI/.idea/workspace.xml
