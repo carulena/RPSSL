@@ -43,7 +43,7 @@ export default function Game({ items }) {
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap:1 }}>
-            <Scoreboard results={results} />
+            <Scoreboard results={results} setResults={setResults} />
 
             <Box sx={{ paddingLeft: 2 }}>
                 <Help url="https://www.samkass.com/theories/RPSSL.html">

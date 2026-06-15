@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api/v1/game";
+const BASE_URL = "http://localhost:8080/api/v1/game";
 
 export const gameService = {
     async getChoices() {

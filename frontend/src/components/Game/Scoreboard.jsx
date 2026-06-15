@@ -6,15 +6,22 @@ import Title from "../Home/Title";
 import win from "../../assets/images/win.png";
 import lose from "../../assets/images/lose.png";
 import tie from "../../assets/images/tie.png";
+import StartButton from "../Home/StartButton";
+import {gameService} from "../../services/gameService";
 
 const resultMap = { Win: win, Lose: lose, Tie: tie };
 
-export default function Scoreboard({ results }) {
+export default function Scoreboard({ results, setResults }) {
     const scrollRef = useRef(null);
     const [showLeft, setShowLeft]   = useState(false);
     const [showRight, setShowRight] = useState(false);
     const [animKey, setAnimKey]     = useState(0);
 
+    const deleteScoreboard = () => {
+        gameService.deleteScoreboard().then(() => {
+            setResults([])
+        })
+    };
     const checkArrows = () => {
         const el = scrollRef.current;
         if (!el) return;
@@ -30,17 +37,13 @@ export default function Scoreboard({ results }) {
     const scroll = (dir) => {
         scrollRef.current?.scrollBy({ left: dir === "right" ? 600 : -600, behavior: "smooth" });
     };
-
     if (results.length === 0) {
         return (
             <Box sx={{ display: "flex", alignItems: "center", gap: 5, borderBottom: "3px solid #BF6230",
-                top: -40, position: "relative", width: "100vw", marginLeft: "calc(-50vw + 50%)", pb: 2 }}>
-                <Title sx={{ fontSize: "2rem", paddingLeft: 4, position: "relative", top: 20, color: "#BF6230" }}>
-                    Scoreboard
-                </Title>
-                <Typography sx={{ color: "#888", fontSize: "1rem", pb: 2, pt: 3 }}>
+                top: 0, position: "relative", width: "100vw", marginLeft: "calc(-50vw + 50%)", pb: 2 }}>
+                <Title sx={{ color: "#BF6230", fontSize: "1rem", pb: 2, pt: 3, left: 50, position: "relative" }}>
                     No battles yet. Are you scared? 👀
-                </Typography>
+                </Title>
             </Box>
         );
     }
@@ -84,6 +87,10 @@ export default function Scoreboard({ results }) {
                 </Box>
 
                 <ArrowButton direction="right" onClick={() => scroll("right")} disabled={!showRight} />
+                <StartButton sx={{ fontSize: "0.75rem", px: 2, py: 0.8, border: "2px solid #ff5a00" }}
+                             onClick={() => deleteScoreboard()}>
+                    Delete scoreboard
+                </StartButton>
             </Box>
         </Box>
     );
