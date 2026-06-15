@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Box } from "@mui/material";
-export default function CircleCarousel({ items, setItems }) {
+export default function CircleCarousel({ items }) {
     const [active, setActive] = React.useState(0);
 
     useEffect(() => {

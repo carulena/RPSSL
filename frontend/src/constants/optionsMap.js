@@ -1,5 +1,3 @@
-import React from "react";
-
 export const optionsMap = {
     1: { name: "Rock", emoji: "🪨"},
     2: { name: "Paper", emoji: "📄"},
